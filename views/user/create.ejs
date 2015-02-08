@@ -1,0 +1,15 @@
+<% if (req.session.flash && req.session.flash.errors) {%>
+	<% var errors = req.flash('errors') %>
+	<% errors.forEach(function(error) { %>
+		<p><%= error %></p>
+	<% }); %>
+<% } %>
+<form action="/users" method="post" autocomplete="off">
+	<label for="name">Name</label>
+	<input type="text" name="name" id="name" /><br />
+	<label for="password">Password</label>
+	<input type="password" name="password" id="password" /><br />
+	<label for="email">Email</label>
+	<input type="text" name="email" id="email" /><br />
+	<button type="submit">Register</button>
+</form>

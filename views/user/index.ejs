@@ -1,0 +1,36 @@
+<script src="http://localhost/cdn/jquery.min.js"></script>
+<script>
+    $(function() {
+        // io.socket.on('connect', function(socket) {
+        //     // console.log('OK');
+        //     socket.get('/users/subscribe', function(data) {
+        //         console.log(data);
+        //     });
+        // });
+        // io.socket.get('/users/subscribe');
+        io.socket.on('insert-user', function(data) {
+            if(Object.keys(data).length > 0) {
+                $elm = $("<div />");
+
+                // $.each(data, function(info, index) {
+                    $elm.append("<p>User: "+data.name+"</p><p>Email: "+data.email+"</p><p>Password: "+data.password+"</p>");
+                    // console.log(info);
+                    // console.log(index);
+                // });
+
+                $elm.hide().appendTo("#list").slideDown(1000);
+            }
+        });
+    });
+</script>
+<div id="list">
+    <% if (users) { %>
+    	<% users.forEach(function(user) { %>
+    		<div>
+    			<p>User: <%= user.name %></p>
+    			<p>Email: <%= user.email %></p>
+    			<p>Password: <%= user.password %></p>
+    		</div>
+    	<% }); %>
+    <% } %>
+</div>
