@@ -23,7 +23,9 @@
     "grunt-contrib-less": "0.11.1",
     "grunt-contrib-coffee": "~0.10.1",
     "sails-mongo": "latest",
-    "grunt-contrib-watch": "latest"
+    "grunt-contrib-watch": "latest",
+    "swig": "latest",
+    "moment": "latest"
   },
   "scripts": {
     "start": "node app.js",

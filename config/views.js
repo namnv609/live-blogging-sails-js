@@ -30,7 +30,17 @@ module.exports.views = {
   *                                                                           *
   ****************************************************************************/
 
-  engine: 'ejs',
+  // engine: 'ejs',
+  engine: {
+    ext: 'swig',
+    fn: function(pathName, locals, cb) {
+      var swig = require('swig');
+      swig.setDefaults({
+        cache: false
+      });
+      return swig.renderFile(pathName, locals, cb);
+    }
+  },
   
 
   /****************************************************************************

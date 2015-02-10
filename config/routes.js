@@ -32,9 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+  '/': 'IndexController.index',
 
   'GET /users/:name?': {
     controller: 'user',
@@ -48,7 +46,10 @@ module.exports.routes = {
 
   'GET /register': {
     view: 'user/create'
-  }
+  },
+
+  'GET /events': 'EventsController.index',
+  'POST /events': 'EventsController.create'
 
   /***************************************************************************
   *                                                                          *
