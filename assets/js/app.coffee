@@ -17,6 +17,6 @@ $ ->
                 .attr 'title', event.createdAt
             console.log $template
             $template.clone().hide().prependTo $ '#timeline'
-                .fadeIn 2000
+                .slideDown 2000
             $ '.timeago'
                 .timeago()

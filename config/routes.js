@@ -34,20 +34,25 @@ module.exports.routes = {
 
   '/': 'IndexController.index',
 
-  'GET /users/:name?': {
-    controller: 'user',
-    action: 'index'
+  /* Users */
+  // 'GET /users/:name?': {
+  //   controller: 'users',
+  //   action: 'index'
+  // },
+  // 'POST /users': {
+  //   controller: 'users',
+  //   action: 'create'
+  // },
+  // 'GET /register': {
+  //   view: 'users/create'
+  // },
+  'GET /login': {
+    view: 'users/login'
   },
+  'POST /login': 'UsersController.login',
+  'GET /logout': 'UsersController.logout',
 
-  'POST /users': {
-    controller: 'user',
-    action: 'create'
-  },
-
-  'GET /register': {
-    view: 'user/create'
-  },
-
+  /* Events */
   'GET /events': 'EventsController.index',
   'POST /events': 'EventsController.create'
 

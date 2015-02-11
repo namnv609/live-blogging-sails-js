@@ -9,6 +9,7 @@
         <textarea name="content" id="content" cols="30" rows="10"></textarea><br />
         <button type="submit">Submit</button>
     </form>
+    <a href="/logout">Logout</a>
 {% endblock %}
 {% block js_footer %}
     <script type="text/javascript" src="/js/admin/app.js"></script>
