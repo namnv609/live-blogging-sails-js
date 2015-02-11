@@ -1,11 +1,29 @@
 module.exports =
-    index: (req, res) ->
-        Events
-            .find()
-            .sort
-                _id: 'desc'
-            .exec (error, events) ->
-                next error if error
+    ### IndexController.index() ###
+    index: (req, res, next) ->
+        async = require 'async'
 
-                res.view 'homepage',
-                    events: events
+        async.parallel [
+            (callback) ->
+                Events
+                    .find()
+                    .sort
+                        _id: 'desc'
+                    .exec (error, events) ->
+                        next error if error
+
+                        callback null, events
+            , (callback) ->
+                Settings
+                    .find()
+                    .limit(1)
+                    .exec (error, settings) ->
+                        next error if error 
+
+                        callback null, settings
+        ], (error, results) ->
+            next error if error
+
+            res.view 'homepage',
+                events: results[0]
+                settings: results[1][0]

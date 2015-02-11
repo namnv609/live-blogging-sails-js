@@ -30,7 +30,6 @@ module.exports =
                     
                     return res.redirect '/register'
 
-                # User.publishCreate data
                 sails.io.sockets.emit 'insert-user', data
 
                 res.redirect '/users'

@@ -36,8 +36,10 @@ module.exports.views = {
     fn: function(pathName, locals, cb) {
       var swig = require('swig');
       swig.setDefaults({
-        cache: false
+        cache: false,
+        autoescape: false
       });
+      swig.setDefaultTZOffset("-420");
       return swig.renderFile(pathName, locals, cb);
     }
   },
