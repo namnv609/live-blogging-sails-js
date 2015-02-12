@@ -1,15 +1,201 @@
 <!DOCTYPE html>
 <html lang="vi-VN">
     <head>
-        <title>{{ title | default("Live Blogging") }} | Live Blogging - Live event streaming</title>
+        <title>{{ title | default("Dashboard") }} | Live Blogging - Live event streaming</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700" />
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" />
+        <link type="text/css" rel="stylesheet" href="/styles/admin/font-awesome.min.css" />
+        <link type="text/css" rel="stylesheet" href="/styles/admin/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="/styles/admin/all.css" />
+        <link type="text/css" rel="stylesheet" href="/styles/admin/main.css" />
+        <link type="text/css" rel="stylesheet" href="/styles/admin/style-responsive.css" />
+        <link type="text/css" rel="stylesheet" href="/styles/admin/pace.css" />
         {% block stylesheet %}{% endblock %}
     </head>
     <body>
-        {% block content %}{% endblock %}
+        <div>
+            <!--BEGIN TOPBAR-->
+            <div id="header-topbar-option-demo" class="page-header-topbar">
+                <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+                    <div class="navbar-header">
+                        <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a id="logo" href="/admin" class="navbar-brand">
+                            <span class="fa fa-rocket"></span>
+                            <span class="logo-text">LiveAdmin</span>
+                            <span style="display: none" class="logo-text-icon">µ</span>
+                        </a>
+                    </div>
+                    <div class="topbar-main">
+                        <a id="menu-toggle" class="hidden-xs"><i class="fa fa-bars"></i></a>
+                        <ul class="nav navbar navbar-top-links navbar-right mbn">
+                            <li class="dropdown topbar-user">
+                                <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                                    <img src="/images/admin/avatar/profile-pic.png" alt="" class="img-responsive img-circle"/>
+                                    &nbsp;<span class="hidden-xs">{{ req.session.user.name }}</span>&nbsp;
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user pull-right">
+                                    <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/logout"><i class="fa fa-key"></i>Log Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!--END TOPBAR-->
+            <div id="wrapper">
+                <!--BEGIN SIDEBAR MENU-->
+                <nav style="min-height: 100%;" id="sidebar" role="navigation" data-step="2" data-intro="Template has <b>many navigation styles</b>" data-position="right" class="navbar-default navbar-static-side">
+                    <div class="sidebar-collapse menu-scroll">
+                        <ul id="side-menu" class="nav">
+                            <div class="clearfix"></div>
+                            <li class="active">
+                                <a href="dashboard.html">
+                                    <i class="fa fa-tachometer fa-fw">
+                                        <div class="icon-bg bg-orange"></div>
+                                    </i>
+                                    <span class="menu-title">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Layout.html">
+                                    <i class="fa fa-desktop fa-fw">
+                                        <div class="icon-bg bg-pink"></div>
+                                    </i>
+                                    <span class="menu-title">Layouts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="UIElements.html">
+                                    <i class="fa fa-send-o fa-fw">
+                                        <div class="icon-bg bg-green"></div>
+                                    </i>
+                                    <span class="menu-title">UI Elements</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Forms.html">
+                                    <i class="fa fa-edit fa-fw">
+                                        <div class="icon-bg bg-violet"></div>
+                                    </i>
+                                    <span class="menu-title">Forms</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Tables.html">
+                                    <i class="fa fa-th-list fa-fw">
+                                        <div class="icon-bg bg-blue"></div>
+                                    </i>
+                                    <span class="menu-title">Tables</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="DataGrid.html">
+                                    <i class="fa fa-database fa-fw">
+                                        <div class="icon-bg bg-red"></div>
+                                    </i>
+                                    <span class="menu-title">Data Grids</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Pages.html">
+                                    <i class="fa fa-file-o fa-fw">
+                                        <div class="icon-bg bg-yellow"></div>
+                                    </i>
+                                    <span class="menu-title">Pages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Extras.html">
+                                    <i class="fa fa-gift fa-fw">
+                                        <div class="icon-bg bg-grey"></div>
+                                    </i>
+                                    <span class="menu-title">Extras</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Dropdown.html">
+                                    <i class="fa fa-sitemap fa-fw">
+                                        <div class="icon-bg bg-dark"></div>
+                                    </i>
+                                    <span class="menu-title">Multi-Level Dropdown</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Email.html">
+                                    <i class="fa fa-envelope-o">
+                                        <div class="icon-bg bg-primary"></div>
+                                    </i>
+                                    <span class="menu-title">Email</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Charts.html">
+                                    <i class="fa fa-bar-chart-o fa-fw">
+                                        <div class="icon-bg bg-orange"></div>
+                                    </i>
+                                    <span class="menu-title">Charts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Animation.html">
+                                    <i class="fa fa-slack fa-fw">
+                                        <div class="icon-bg bg-green"></div>
+                                    </i>
+                                    <span class="menu-title">Animations</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!--END SIDEBAR MENU-->
+                <!--BEGIN PAGE WRAPPER-->
+                <div id="page-wrapper">
+                    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                        <div class="page-header pull-left">
+                            <div class="page-title">
+                                {{ title | default("Dashboard") }}
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <!--END TITLE & BREADCRUMB PAGE-->
+                    <!--BEGIN CONTENT-->
+                    <div class="page-content">
+                        <div id="tab-general">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                    <!--END CONTENT-->
+                    <!--BEGIN FOOTER-->
+                    <div id="footer">
+                        <div class="copyright">
+                            <a href="http://themifycloud.com">2014 © KAdmin Responsive Multi-Purpose Template</a>
+                        </div>
+                    </div>
+                    <!--END FOOTER-->
+                </div>
+                <!--END PAGE WRAPPER-->
+            </div>
+        </div>
         <script src="/js/dependencies/sails.io.js" type="text/javascript"></script>
         <script src="/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script src="/js/admin/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+        <script src="/js/admin/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/js/admin/bootstrap-hover-dropdown.js" type="text/javascript"></script>
         {% block js_footer %}{% endblock %}
     </body>
 </html>

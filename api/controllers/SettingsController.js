@@ -3,9 +3,33 @@
   module.exports = {
 
     /* SettingsController.index() */
-    index: function(req, res) {
-      return res.json({
-        todo: 'GET /settings'
+    index: function(req, res, next) {
+      var websiteConfig;
+      return Settings.find().limit(1).exec(websiteConfig = function(error, config) {
+        if (error) {
+          return next(error);
+        }
+        return res.view({
+          title: 'Website configurations',
+          config: config[0]
+        });
+      });
+    },
+    update: function(req, res, next) {
+      var params, updateConfig;
+      params = req.params.all();
+      return Settings.update({
+        id: '54dac1108e72440527233c8b'
+      }, params, {
+        upsert: true
+      }).exec(updateConfig = function(error, updateStatus) {
+        if (error && error.invalidAttributes) {
+          req.flash('errors', MyServices.modelValidation(Settings, error.invalidAttributes));
+        } else {
+          req.flash('message', 'Update website configurations successfull.');
+        }
+        console.log(updateStatus);
+        return res.redirect('/admin');
       });
     }
   };

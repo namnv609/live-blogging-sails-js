@@ -54,7 +54,11 @@ module.exports.routes = {
 
   /* Events */
   'GET /events': 'EventsController.index',
-  'POST /events': 'EventsController.create'
+  'POST /events': 'EventsController.create',
+
+  /* Settings */
+  'GET /admin': 'Settings.index',
+  'POST /settings': 'Settings.update',
 
   /***************************************************************************
   *                                                                          *
