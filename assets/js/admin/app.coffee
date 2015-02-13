@@ -1,16 +1,17 @@
+# CKFinder.s
 $ ->
     $ '#frmEvent'
+        .off 'submit'
         .on 'submit', ->
+            updateCKEditor()
             formData = $ @
                 .serialize()
 
             $.ajax
                 url: '/events'
                 type: 'post'
+                async: false
                 data: formData
-                beforeSend: ->
-                    $ '> *', $ @
-                        .prop 'disabled', true
             .done (res) ->
                 if res.errors
                     $ '#errors'
@@ -21,9 +22,14 @@ $ ->
                 else
                     $ '#errors'
                         .html 'Insert successfull.'
-                    $ '#content'
-                        .val ''
+                    CKEDITOR.instances.content.setData ''
             .fail (xhr, ao, err) ->
                 alert err
 
             false
+
+    updateCKEditor = ->
+        for instance of CKEDITOR.instances
+            CKEDITOR.instances[instance].updateElement()
+
+        return

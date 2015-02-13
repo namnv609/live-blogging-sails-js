@@ -14,8 +14,7 @@
                     </div>
                     <div class='content'>
                         <p>
-                            {{ event.created }}<br />
-                            {{ event.content| replace('(\r\n|\n)', '<br />', 'g') }}
+                            {{ event.content }}
                         </p>
                     </div>
                 </li>
@@ -37,5 +36,6 @@
 {% endblock %}
 {% block js_footer %}
     <script type="text/javascript" src="/js/jquery.timeago.js"></script>
+    <script type="text/javascript" src="/js/jquery-dateFormat.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
 {% endblock %}

@@ -10,10 +10,8 @@
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" />
         <link type="text/css" rel="stylesheet" href="/styles/admin/font-awesome.min.css" />
         <link type="text/css" rel="stylesheet" href="/styles/admin/bootstrap.min.css" />
-        <link type="text/css" rel="stylesheet" href="/styles/admin/all.css" />
         <link type="text/css" rel="stylesheet" href="/styles/admin/main.css" />
         <link type="text/css" rel="stylesheet" href="/styles/admin/style-responsive.css" />
-        <link type="text/css" rel="stylesheet" href="/styles/admin/pace.css" />
         {% block stylesheet %}{% endblock %}
     </head>
     <body>
@@ -60,100 +58,20 @@
                     <div class="sidebar-collapse menu-scroll">
                         <ul id="side-menu" class="nav">
                             <div class="clearfix"></div>
-                            <li class="active">
-                                <a href="dashboard.html">
-                                    <i class="fa fa-tachometer fa-fw">
+                            <li>
+                                <a href="/settings">
+                                    <i class="fa fa-cog fa-fw">
                                         <div class="icon-bg bg-orange"></div>
                                     </i>
-                                    <span class="menu-title">Dashboard</span>
+                                    <span class="menu-title">Website configurations</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="Layout.html">
-                                    <i class="fa fa-desktop fa-fw">
+                                <a href="/events">
+                                    <i class="fa fa-code fa-fw">
                                         <div class="icon-bg bg-pink"></div>
                                     </i>
-                                    <span class="menu-title">Layouts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="UIElements.html">
-                                    <i class="fa fa-send-o fa-fw">
-                                        <div class="icon-bg bg-green"></div>
-                                    </i>
-                                    <span class="menu-title">UI Elements</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Forms.html">
-                                    <i class="fa fa-edit fa-fw">
-                                        <div class="icon-bg bg-violet"></div>
-                                    </i>
-                                    <span class="menu-title">Forms</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Tables.html">
-                                    <i class="fa fa-th-list fa-fw">
-                                        <div class="icon-bg bg-blue"></div>
-                                    </i>
-                                    <span class="menu-title">Tables</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="DataGrid.html">
-                                    <i class="fa fa-database fa-fw">
-                                        <div class="icon-bg bg-red"></div>
-                                    </i>
-                                    <span class="menu-title">Data Grids</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Pages.html">
-                                    <i class="fa fa-file-o fa-fw">
-                                        <div class="icon-bg bg-yellow"></div>
-                                    </i>
-                                    <span class="menu-title">Pages</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Extras.html">
-                                    <i class="fa fa-gift fa-fw">
-                                        <div class="icon-bg bg-grey"></div>
-                                    </i>
-                                    <span class="menu-title">Extras</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Dropdown.html">
-                                    <i class="fa fa-sitemap fa-fw">
-                                        <div class="icon-bg bg-dark"></div>
-                                    </i>
-                                    <span class="menu-title">Multi-Level Dropdown</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Email.html">
-                                    <i class="fa fa-envelope-o">
-                                        <div class="icon-bg bg-primary"></div>
-                                    </i>
-                                    <span class="menu-title">Email</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Charts.html">
-                                    <i class="fa fa-bar-chart-o fa-fw">
-                                        <div class="icon-bg bg-orange"></div>
-                                    </i>
-                                    <span class="menu-title">Charts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Animation.html">
-                                    <i class="fa fa-slack fa-fw">
-                                        <div class="icon-bg bg-green"></div>
-                                    </i>
-                                    <span class="menu-title">Animations</span>
+                                    <span class="menu-title">Add event</span>
                                 </a>
                             </li>
                         </ul>
@@ -193,9 +111,10 @@
         </div>
         <script src="/js/dependencies/sails.io.js" type="text/javascript"></script>
         <script src="/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-        <script src="/js/admin/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
         <script src="/js/admin/bootstrap.min.js" type="text/javascript"></script>
         <script src="/js/admin/bootstrap-hover-dropdown.js" type="text/javascript"></script>
+        <script src="/js/admin/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script src="/js/admin/app.js" type="text/javascript"></script>
         {% block js_footer %}{% endblock %}
     </body>
 </html>

@@ -6,10 +6,9 @@
     <div id="errors"></div>
     <form action="/events" id="frmEvent" method="post" autocomplete="off">
         <label for="content">Content</label><br />
-        <textarea name="content" id="content" cols="30" rows="10"></textarea><br />
+        <textarea name="content" class="ckeditor" id="content" cols="30" rows="30"></textarea><br />
         <button type="submit">Submit</button>
     </form>
-    <a href="/logout">Logout</a>
 {% endblock %}
 {% block js_footer %}
     <script type="text/javascript" src="/js/admin/app.js"></script>
