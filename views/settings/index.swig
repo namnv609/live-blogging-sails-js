@@ -2,8 +2,8 @@
 
 {% block content %}
     <div class="row mbl">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-green">
                 <div class="panel-body pan">
                     <form action="/settings" method="post" autocomplete="off" class="form-horizontal">
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label for="siteFooter" class="control-label col-md-3">Website description</label>
                                 <div class="col-md-9">
-                                    <textarea class="form-control" rows="10" name="siteFooter" id="siteFooter">{{ config.siteFooter | default('') }}</textarea>
+                                    <textarea class="form-control ckeditor" rows="10" name="siteFooter" id="siteFooter">{{ config.siteFooter | default('') }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -57,6 +57,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-2"></div>
     </div>
 {% endblock %}

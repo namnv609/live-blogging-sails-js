@@ -8,11 +8,12 @@
 
     /* UsersControler.login() */
     login: function(req, res, next) {
-      var params;
+      var md5, params;
       params = req.params.all();
+      md5 = require('MD5');
       return Users.find({
         email: params.email,
-        password: params.password
+        password: md5(params.password)
       }).limit(1).exec(function(error, user) {
         if (error || Object.keys(user).length <= 0) {
           return res.view({

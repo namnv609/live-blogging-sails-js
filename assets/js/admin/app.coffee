@@ -1,4 +1,3 @@
-# CKFinder.s
 $ ->
     $ '#frmEvent'
         .off 'submit'
@@ -8,7 +7,7 @@ $ ->
                 .serialize()
 
             $.ajax
-                url: '/events'
+                url: '/events/add'
                 type: 'post'
                 async: false
                 data: formData
@@ -33,3 +32,6 @@ $ ->
             CKEDITOR.instances[instance].updateElement()
 
         return
+
+    $ 'p.date'
+        .timeago()

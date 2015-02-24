@@ -8,8 +8,8 @@
             {% for event in events %}
                 <li class='work'>
                     <div class="relative">
-                        <label class="timeago" title="{{ event.createdAt.toString() }}">{{ event.createdAt.toString() }}</label>
-                        <span class='date'>{{ event.createdAt | date("d/m/Y H:i") }}</span>
+                        <label class="timeago" title="{{ event.createdAt | date("m/d/Y H:i") }}">{{ event.createdAt | date("m/d/Y H:i") }}</label>
+                        <span class='date'>{{ event.createdAt | date("m/d/Y H:i") }}</span>
                         <span class='circle'></span>
                     </div>
                     <div class='content'>

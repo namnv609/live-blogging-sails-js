@@ -50,7 +50,8 @@ module.exports.policies = {
 	// }
 
   EventsController: {
-    '*': 'isAdmin'
+    // '*': 'isAdmin'
+    '*': true
   },
   UsersController: {
     '*': false,
@@ -58,6 +59,7 @@ module.exports.policies = {
     'logout': 'isAdmin'
   },
   SettingsController: {
-    '*': 'isAdmin'
+    // '*': 'isAdmin'
+    '*': true
   },
 };

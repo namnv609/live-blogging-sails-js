@@ -4,8 +4,16 @@
 
     /* EventsController.index() */
     index: function(req, res) {
-      return res.view({
-        title: 'Add new event'
+      return Events.find().sort({
+        _id: 'desc'
+      }).exec(function(error, events) {
+        if (error) {
+          return next(error);
+        }
+        return res.view({
+          title: 'Events manage',
+          events: events
+        });
       });
     },
 
@@ -13,17 +21,24 @@
     create: function(req, res) {
       var params;
       params = req.params.all();
-      return Events.create(params).exec(function(error, event) {
-        if (error && error.invalidAttributes) {
+      params.id = new Date().getTime();
+      if (req.method === 'POST') {
+        return Events.create(params).exec(function(error, event) {
+          if (error && error.invalidAttributes) {
+            return res.json({
+              errors: MyServices.modelValidation(Events, error.invalidAttributes)
+            });
+          }
+          sails.io.sockets.emit('insertEvent', event);
           return res.json({
-            errors: MyServices.modelValidation(Events, error.invalidAttributes)
+            data: event
           });
-        }
-        sails.io.sockets.emit('insertEvent', event);
-        return res.json({
-          data: event
         });
-      });
+      } else {
+        return res.view({
+          title: 'Add new event'
+        });
+      }
     }
   };
 

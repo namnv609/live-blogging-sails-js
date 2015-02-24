@@ -1,5 +1,5 @@
 $ ->
-    $ 'label.timeago'
+    $ '.timeago'
         .timeago()
 
     io.socket.on 'insertEvent', (event) ->

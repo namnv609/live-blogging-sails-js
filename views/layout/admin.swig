@@ -42,7 +42,7 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user pull-right">
-                                    <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
+                                    <li><a href="/profile"><i class="fa fa-user"></i>My Profile</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/logout"><i class="fa fa-key"></i>Log Out</a></li>
                                 </ul>
@@ -71,7 +71,23 @@
                                     <i class="fa fa-code fa-fw">
                                         <div class="icon-bg bg-pink"></div>
                                     </i>
+                                    <span class="menu-title">Event manage</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/events/add">
+                                    <i class="fa fa-plus fa-fw">
+                                        <div class="icon-bg bg-pink"></div>
+                                    </i>
                                     <span class="menu-title">Add event</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/notifications">
+                                    <i class="fa fa-comments-o fa-fw">
+                                        <div class="icon-bg bg-pink"></div>
+                                    </i>
+                                    <span class="menu-title">Notifications</span>
                                 </a>
                             </li>
                         </ul>

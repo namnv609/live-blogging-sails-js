@@ -34,11 +34,12 @@ module.exports =
     ### UsersControler.login() ###
     login: (req, res, next) ->
         params = req.params.all()
+        md5 = require 'MD5'
 
         Users
             .find
                 email: params.email
-                password: params.password
+                password: md5(params.password)
             .limit 1
             .exec (error, user) ->
                 if error or Object.keys(user).length <= 0

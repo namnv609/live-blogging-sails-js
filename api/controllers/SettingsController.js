@@ -16,20 +16,23 @@
       });
     },
     update: function(req, res, next) {
-      var params, updateConfig;
+      var params;
       params = req.params.all();
-      return Settings.update({
-        id: '54dac1108e72440527233c8b'
-      }, params, {
-        upsert: true
-      }).exec(updateConfig = function(error, updateStatus) {
-        if (error && error.invalidAttributes) {
-          req.flash('errors', MyServices.modelValidation(Settings, error.invalidAttributes));
-        } else {
-          req.flash('message', 'Update website configurations successfull.');
+      return Settings.find().limit(1).exec(function(error, config) {
+        var updateConfig;
+        if (error) {
+          return next(error);
         }
-        console.log(updateStatus);
-        return res.redirect('/admin');
+        return Settings.update(config[0], params, {
+          upsert: true
+        }).exec(updateConfig = function(error, updateStatus) {
+          if (error && error.invalidAttributes) {
+            req.flash('errors', MyServices.modelValidation(Settings, error.invalidAttributes));
+          } else {
+            req.flash('message', 'Update website configurations successfull');
+          }
+          return res.redirect('/settings');
+        });
       });
     }
   };
