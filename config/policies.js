@@ -54,9 +54,8 @@ module.exports.policies = {
     '*': true
   },
   UsersController: {
-    '*': false,
-    'login': true,
-    'logout': 'isAdmin'
+    '*': 'isAdmin',
+    'login': true
   },
   SettingsController: {
     // '*': 'isAdmin'

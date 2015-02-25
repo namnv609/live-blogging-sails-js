@@ -42,6 +42,8 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user pull-right">
+                                    <li><a href="/" target="_blank"><i class="fa fa-home"></i>View Site</a></li>
+                                    <li class="divider"></li>
                                     <li><a href="/profile"><i class="fa fa-user"></i>My Profile</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/logout"><i class="fa fa-key"></i>Log Out</a></li>

@@ -8,7 +8,7 @@ $ ->
             dateTime = new Date(event.createdAt).getTime();
 
             $ '.date', $template
-                .html $.format.date dateTime, "dd/MM/yyyy HH:mm"
+                .html $.format.date dateTime, "MM/dd/yyyy HH:mm"
             $ '.content p', $template
                 .html event.content
             $ '.timeago', $template

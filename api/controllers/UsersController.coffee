@@ -32,6 +32,10 @@ module.exports =
     #             res.redirect '/users'
 
     ### UsersControler.login() ###
+
+    index: (req, res, next) ->
+        res.redirect '/'
+
     login: (req, res, next) ->
         params = req.params.all()
         md5 = require 'MD5'
@@ -56,3 +60,39 @@ module.exports =
         delete req.session.user
 
         res.redirect '/'
+
+    profile: (req, res, next) ->
+
+        if req.method is 'POST'
+            params = req.params.all()
+            Users
+                .find()
+                .limit(1)
+                .exec (error, user, next) ->
+                    return next error if error
+
+                    Users
+                        .update user[0], params,
+                            upsert: true
+                        .exec (error, updateStatus) ->
+                            if error and error.invalidAttributes
+                                req.flash 'errors', MyServices.modelValidation Users, error.invalidAttributes
+                            else
+                                req.flash 'message', 'Update profile successfull'
+
+                        res.redirect '/profile'
+
+
+        Users
+            .find()
+            .limit(1)
+            .exec (error, user) ->
+                return next error if error
+
+                res.view
+                    title: 'Profile update'
+                    user: user[0]
+                
+
+
+

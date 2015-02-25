@@ -39,6 +39,38 @@
           title: 'Add new event'
         });
       }
+    },
+
+    /* EventsController.edit() */
+    edit: function(req, res, next) {
+      var eventID;
+      eventID = parseInt(req.params.id);
+      return Events.find({
+        _id: eventID
+      }).limit(1).exec(function(error, event) {
+        if (error) {
+          return next(error);
+        }
+        return res.view('events/create', {
+          event: event[0],
+          title: 'Edit event'
+        });
+      });
+    },
+    'delete': function(req, res, next) {
+      var eventID, params;
+      params = req.params.all();
+      eventID = parseInt(params.id);
+      return Events.destroy({
+        _id: eventID
+      }).exec(function(error, deleteStatus) {
+        if (error) {
+          return next(error);
+        }
+        return res.json({
+          status: deleteStatus
+        });
+      });
     }
   };
 

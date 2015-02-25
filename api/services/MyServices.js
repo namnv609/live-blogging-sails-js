@@ -16,7 +16,10 @@ exports.modelValidation = function(model, validationErrors) {
     var _validationErrors = {
         required: '%s is required field',
         email: '%s is invalid email',
-        uniqEmail: '%s is uniquess'
+        uniqEmail: '%s is uniquess',
+        rePassword: '%s does not match',
+        // minLength: '%s must be greate than '+ model._attributes.password.minLength +' characters'
+        minLength: '%s must be greate than %s characters'
     };
     var _errors = [];
     var labelList = model.labels;

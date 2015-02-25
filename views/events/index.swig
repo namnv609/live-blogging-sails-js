@@ -12,9 +12,14 @@
 						{% for event in events %}
 					<tr class="tbl-item">
     					<td class="td-block">
-    						<p class="date" title="{{ event.createdAt | date("m/d/Y H:i") }}">{{ event.createdAt | date("m/d/Y H:i") }}</p>
+    						<p class="date" title="{{ event.createdAt | date(sails.config.myconfig.dateTimeFormat) }}">{{ event.createdAt | date(sails.config.myconfig.dateTimeFormat) }}</p>
     						<div class="title">
-    							<a href="/events/edit/{{ event.id }}">Edit</a> | <a href="/events/delete/{{ event.id }}">Delete</a>
+    							<a href="/events/edit/{{ event.id }}"  class="btn btn-green">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="/events/delete" data-id="{{ event.id }}" class="btn btn-red remove-event">
+                                    <i class="fa fa-times"></i>
+                                </a>
     						</div>
     						<p class="desc">
     							{{ event.content }}
@@ -29,6 +34,5 @@
     </div>
 {% endblock %}
 {% block js_footer %}
-    <script type="text/javascript" src="/js/admin/app.js"></script>
     <script type="text/javascript" src="/js/jquery.timeago.js"></script>
 {% endblock %}

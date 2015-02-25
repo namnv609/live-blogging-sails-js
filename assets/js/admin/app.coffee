@@ -35,3 +35,27 @@ $ ->
 
     $ 'p.date'
         .timeago()
+
+    $ 'a.remove-event'
+        .on 'click', ->
+            if confirm 'Are you sure you want to delete this event?'
+                eventID = $ @
+                    .data 'id'
+                $self = $ @
+                    .closest 'tr.tbl-item'
+                console.log $self
+
+                if eventID
+                    $.ajax
+                        url: '/events/delete'
+                        type: 'POST'
+                        async: false
+                        data:
+                            id: eventID
+                    .done (res) ->
+                        if res.length >= 1
+                            $self.remove()
+                    .fail (xhr, ao, error) ->
+                        alert error
+
+            false

@@ -20,7 +20,7 @@
             {% block errors %}{% endblock %}
         </div>
         <div id="footer">
-            <a href="/">Back to Homepage</a>
+            <a href="/">Back to Homepage</a> | <a href="/login">Login</a>
             <p>&copy;2015 by NamNV609</p>
         </div>
     </body>

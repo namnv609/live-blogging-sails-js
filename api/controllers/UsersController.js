@@ -7,6 +7,9 @@
     /* UsersController.create() */
 
     /* UsersControler.login() */
+    index: function(req, res, next) {
+      return res.redirect('/');
+    },
     login: function(req, res, next) {
       var md5, params;
       params = req.params.all();
@@ -31,6 +34,36 @@
       delete req.session.isAdmin;
       delete req.session.user;
       return res.redirect('/');
+    },
+    profile: function(req, res, next) {
+      var params;
+      if (req.method === 'POST') {
+        params = req.params.all();
+        Users.find().limit(1).exec(function(error, user, next) {
+          if (error) {
+            return next(error);
+          }
+          Users.update(user[0], params, {
+            upsert: true
+          }).exec(function(error, updateStatus) {
+            if (error && error.invalidAttributes) {
+              return req.flash('errors', MyServices.modelValidation(Users, error.invalidAttributes));
+            } else {
+              return req.flash('message', 'Update profile successfull');
+            }
+          });
+          return res.redirect('/profile');
+        });
+      }
+      return Users.find().limit(1).exec(function(error, user) {
+        if (error) {
+          return next(error);
+        }
+        return res.view({
+          title: 'Profile update',
+          user: user[0]
+        });
+      });
     }
   };
 

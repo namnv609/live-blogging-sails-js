@@ -51,11 +51,15 @@ module.exports.routes = {
   },
   'POST /login': 'UsersController.login',
   'GET /logout': 'UsersController.logout',
+  'GET /profile': 'UsersController.profile',
+  'POST /profile': 'UsersController.profile',
 
   /* Events */
   'GET /events': 'EventsController.index',
   'GET /events/add': 'EventsController.create',
   'POST /events/add': 'EventsController.create',
+  'GET /events/edit/:id': 'EventsController.edit',
+  'POST /events/delete': 'EventsController.delete',
 
   /* Settings */
   'GET /admin': 'Settings.index',
