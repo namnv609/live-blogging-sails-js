@@ -14,10 +14,10 @@
     					<td class="td-block">
     						<p class="date" title="{{ event.createdAt | date(sails.config.myconfig.dateTimeFormat) }}">{{ event.createdAt | date(sails.config.myconfig.dateTimeFormat) }}</p>
     						<div class="title">
-    							<a href="/events/edit/{{ event.id }}"  class="btn btn-green">
+    							<a href="/events/edit/{{ event.event_id }}"  class="btn btn-green">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="/events/delete" data-id="{{ event.id }}" class="btn btn-red remove-event">
+                                <a href="/events/delete" data-id="{{ event.event_id }}" class="btn btn-red remove-event">
                                     <i class="fa fa-times"></i>
                                 </a>
     						</div>

@@ -7,7 +7,7 @@
         {% if events %}
             {% for event in events %}
                 <li class='work'>
-                    <div class="relative">
+                    <div class="relative" data-event-id='{{ event.event_id }}'>
                         <label class="timeago" title="{{ event.createdAt | date("m/d/Y H:i") }}">{{ event.createdAt | date(sails.config.myconfig.dateTimeFormat) }}</label>
                         <span class='date'>{{ event.createdAt | date(sails.config.myconfig.dateTimeFormat) }}</span>
                         <span class='circle'></span>
@@ -22,7 +22,7 @@
         {% endif %}
     </ul>
     <div id="template" class="hidden">
-        <li class='work'>
+        <li class='work'  data-event-id=''>
             <div class="relative">
                 <label class="timeago" title="">timeago</label>
                 <span class='date'>08 May 2013</span>

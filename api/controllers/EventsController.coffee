@@ -15,31 +15,55 @@ module.exports =
     ### EventsController.create() ###
     create: (req, res) ->
         params = req.params.all()
-        params.id = new Date().getTime()
 
         if req.method is 'POST'
-            Events
-                .create params
-                .exec (error, event) ->
-                    if error and error.invalidAttributes
-                        return res.json
-                            errors: MyServices.modelValidation Events, error.invalidAttributes
+            if params.event_id is ''
+                params.event_id = new Date().getTime().toString()
+                Events
+                    .create params
+                    .exec (error, event) ->
+                        if error and error.invalidAttributes
+                            return res.json
+                                errors: MyServices.modelValidation Events, error.invalidAttributes
 
-                    sails.io.sockets.emit 'insertEvent', event
+                        sails.io.sockets.emit 'insertEvent', event
 
-                    res.json
-                        data: event
+                        res.json
+                            data: 
+                                action: 'insert'
+                                status: true
+            else
+                Events
+                    .find
+                        event_id: params.event_id
+                    .limit 1
+                    .exec (error, event) ->
+                        return next error if error
+                        _event = event[0]
+                        Events
+                            .update event[0], params,
+                                upsert: true
+                            .exec (error, status) ->                                
+                                if error and error.invalidAttributes
+                                    return res.json
+                                        errors: MyServices.modelValidation Events, error.invalidAttributes
+
+                                sails.io.sockets.emit 'updateEvent', status[0]
+                                res.json
+                                    data:
+                                        action: 'update'
+                                        status: true
         else
             res.view
                 title: 'Add new event'
 
     ### EventsController.edit() ###
     edit: (req, res, next) ->
-        eventID = parseInt req.params.id
+        eventID = req.params.id
 
         Events
             .find
-                _id: eventID
+                event_id: eventID
             .limit 1
             .exec (error, event) ->
                 return next error if error
@@ -50,11 +74,10 @@ module.exports =
 
     'delete': (req, res, next) ->
         params = req.params.all()
-        eventID = parseInt params.id
 
         Events.
             destroy
-                _id: eventID
+                event_id: params.id
             .exec (error, deleteStatus) ->
                 return next error if error
 

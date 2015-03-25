@@ -19,9 +19,13 @@ $ ->
                         $ '#errors'
                             .append "<p>#{error}</p>"
                 else
+                    message = 'Update successfull'
+                    if res.data.action isnt 'update'
+                        message = 'Insert successfull' 
+                        CKEDITOR.instances.content.setData ''
+
                     $ '#errors'
-                        .html 'Insert successfull.'
-                    CKEDITOR.instances.content.setData ''
+                        .html message
             .fail (xhr, ao, err) ->
                 alert err
 

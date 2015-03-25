@@ -5,7 +5,7 @@
 {% block content %}
     <div id="errors"></div>
     <form action="/events/add" id="frmEvent" method="post" autocomplete="off">
-        <input type="hidden" name="id" value="{{ event.id | default('') }}" />
+        <input type="hidden" name="event_id" value="{{ event.event_id | default('') }}" />
         <label for="content">Content</label><br />
         <textarea name="content" class="ckeditor" id="content" cols="30" rows="30">{{ event.content | default('') }}</textarea><br />
         <button type="submit">Submit</button>

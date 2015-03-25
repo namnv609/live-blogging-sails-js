@@ -21,19 +21,50 @@
     create: function(req, res) {
       var params;
       params = req.params.all();
-      params.id = new Date().getTime();
       if (req.method === 'POST') {
-        return Events.create(params).exec(function(error, event) {
-          if (error && error.invalidAttributes) {
+        if (params.event_id === '') {
+          params.event_id = new Date().getTime().toString();
+          return Events.create(params).exec(function(error, event) {
+            if (error && error.invalidAttributes) {
+              return res.json({
+                errors: MyServices.modelValidation(Events, error.invalidAttributes)
+              });
+            }
+            sails.io.sockets.emit('insertEvent', event);
             return res.json({
-              errors: MyServices.modelValidation(Events, error.invalidAttributes)
+              data: {
+                action: 'insert',
+                status: true
+              }
             });
-          }
-          sails.io.sockets.emit('insertEvent', event);
-          return res.json({
-            data: event
           });
-        });
+        } else {
+          return Events.find({
+            event_id: params.event_id
+          }).limit(1).exec(function(error, event) {
+            var _event;
+            if (error) {
+              return next(error);
+            }
+            _event = event[0];
+            return Events.update(event[0], params, {
+              upsert: true
+            }).exec(function(error, status) {
+              if (error && error.invalidAttributes) {
+                return res.json({
+                  errors: MyServices.modelValidation(Events, error.invalidAttributes)
+                });
+              }
+              sails.io.sockets.emit('updateEvent', status[0]);
+              return res.json({
+                data: {
+                  action: 'update',
+                  status: true
+                }
+              });
+            });
+          });
+        }
       } else {
         return res.view({
           title: 'Add new event'
@@ -44,9 +75,9 @@
     /* EventsController.edit() */
     edit: function(req, res, next) {
       var eventID;
-      eventID = parseInt(req.params.id);
+      eventID = req.params.id;
       return Events.find({
-        _id: eventID
+        event_id: eventID
       }).limit(1).exec(function(error, event) {
         if (error) {
           return next(error);
@@ -58,11 +89,10 @@
       });
     },
     'delete': function(req, res, next) {
-      var eventID, params;
+      var params;
       params = req.params.all();
-      eventID = parseInt(params.id);
       return Events.destroy({
-        _id: eventID
+        event_id: params.id
       }).exec(function(error, deleteStatus) {
         if (error) {
           return next(error);
