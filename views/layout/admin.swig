@@ -84,14 +84,14 @@
                                     <span class="menu-title">Add event</span>
                                 </a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="/notifications">
                                     <i class="fa fa-comments-o fa-fw">
                                         <div class="icon-bg bg-pink"></div>
                                     </i>
                                     <span class="menu-title">Notifications</span>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </nav>

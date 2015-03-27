@@ -97,6 +97,7 @@
         if (error) {
           return next(error);
         }
+        sails.io.sockets.emit('deleteEvent', params.id);
         return res.json({
           status: deleteStatus
         });

@@ -50,15 +50,13 @@ module.exports.policies = {
 	// }
 
   EventsController: {
-    // '*': 'isAdmin'
-    '*': true
+    '*': 'isAdmin'
   },
   UsersController: {
     '*': 'isAdmin',
     'login': true
   },
   SettingsController: {
-    // '*': 'isAdmin'
-    '*': true
+    '*': 'isAdmin'
   },
 };

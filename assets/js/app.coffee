@@ -17,14 +17,41 @@ $ ->
                 .html event.createdAt
             $ '.timeago', $template
                 .attr 'title', event.createdAt
-
-            $template.clone().hide().prependTo $ '#timeline'
-                .slideDown 2000
-            $ '.timeago'
-                .timeago()
+            $ 'html, body'
+                .animate
+                    scrollTop: 0
+                , 500
+                .promise().done ->
+                    $template.clone().hide().prependTo $ '#timeline'
+                        .slideDown 2000
+                    $ '.timeago'
+                        .timeago()
 
     io.socket.on 'updateEvent', (event) ->
-        $ "[data-event-id=#{event.event_id}]"
+        $eventElm = $ "[data-event-id=#{event.event_id}]"
             .closest 'li'
-            .find '.content p'
-                .html event.content
+
+        $ 'html, body'
+            .animate
+                scrollTop: $eventElm.offset().top
+            , 500, ->
+                $ '.content p', $eventElm
+                    .html event.content
+                    .promise()
+                    .done ->
+                        $eventElm
+                            .slideUp ->
+                                $ @
+                                    .slideDown()
+
+    io.socket.on 'deleteEvent', (eventID) ->
+        $eventElm = $ "[data-event-id=#{eventID}]"
+
+        $ 'html, body'
+            .animate
+                scrollTop: $eventElm.offset().top
+            , 500, ->
+                $eventElm.closest '.work'
+                    .slideUp 800, ->
+                        $ @
+                            .remove()

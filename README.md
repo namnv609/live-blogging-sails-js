@@ -14,7 +14,7 @@
     * Set MongoDB database path
         * ```sudo mongod --dbpath=/var/lib/mongodb```
 * Clone this repository
-    * ```git clone git@bitbucket.org:namnv609/live-blogging.git```
+    * ```git clone https://github.com/namnv609/live-blogging-sails-js.git```
 * Install Node modules
     * Change to project directory and enter command:
         * ```sudo npm install```
@@ -27,5 +27,5 @@
         * [http://localhost:1337](http://localhost:1337)
     * Admin:
         * [http://localhost:1337/login](http://localhost:1337/login)
-            * Username: **admin**
+            * Username: **admin@gmail.com**
             * Password: **123456**

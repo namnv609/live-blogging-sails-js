@@ -80,6 +80,7 @@ module.exports =
                 event_id: params.id
             .exec (error, deleteStatus) ->
                 return next error if error
+                sails.io.sockets.emit 'deleteEvent', params.id
 
                 res.json
                     status: deleteStatus

@@ -46,9 +46,7 @@ $ ->
                 eventID = $ @
                     .data 'id'
                 $self = $ @
-                    .closest 'tr.tbl-item'
-                console.log $self
-
+                    .closest '.tbl-item'
                 if eventID
                     $.ajax
                         url: '/events/delete'
@@ -57,8 +55,12 @@ $ ->
                         data:
                             id: eventID
                     .done (res) ->
-                        if res.length >= 1
-                            $self.remove()
+                        if res.status.length >= 1
+                            $self
+                                .css "background", "#F00"
+                                .fadeOut 800, ->
+                                    $ @
+                                        .remove()
                     .fail (xhr, ao, error) ->
                         alert error
 
