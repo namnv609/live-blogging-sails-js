@@ -28,7 +28,8 @@
     "swig": "latest"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node_modules/.bin/sails lift",
+    "migrations": "mongorestore --host localhost --port 27017 --db live_blogging migrations/live_blogging/",
     "debug": "node debug app.js"
   },
   "main": "app.js",
