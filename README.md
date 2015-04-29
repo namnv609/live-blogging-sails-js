@@ -29,3 +29,5 @@
         * [http://localhost:1337/login](http://localhost:1337/login)
             * Username: **admin@gmail.com**
             * Password: **123456**
+
+Video demo: https://drive.google.com/file/d/0B2DSdSd9IwqiVF9nME1renFVLTQ/view?usp=sharing
